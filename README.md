@@ -1,4 +1,10 @@
-# ⚛️ React Overview for Beginners
+# React Overview for Beginners
+
+## ⚛️ What is React?
+
+- React is a JavaScript library for building user interfaces, especially single-page applications (SPAs).
+- Created by Facebook, it helps you build reusable UI components efficiently.
+- It focuses on the View layer (the "V" in MVC).
 
 ## 🆚 Library vs Framework
 
