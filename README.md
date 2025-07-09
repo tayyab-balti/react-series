@@ -61,7 +61,7 @@ npm run dev
 ```bash
 npx create-react-app my-app
 cd my-app
-npm start
+npm run start
 ```
 
 > You'll see a running React app at `http://localhost:3000`
