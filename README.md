@@ -68,6 +68,43 @@ npm run start
 
 ---
 
+
+## 🚀 How to Integrate Tailwind CSS with Vite + React
+
+### 🛠️ 1. Install Tailwind and Vite Plugin
+
+```bash
+npm install tailwindcss @tailwindcss/vite
+
+```
+### 2. 🧩 Update vite.config.js
+
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+})
+```
+
+### 3. 💅 Tailwind Import in CSS
+
+```js
+@import "tailwindcss";
+```
+
+### 4. ▶️ Launch Dev Server
+
+```bash
+npm run dev
+```
+
+
 ## 📂 Folder Structure (Basic)
 ```
 my-app/
