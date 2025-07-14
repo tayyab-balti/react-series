@@ -159,7 +159,7 @@ function Counter() {
 
 ### ✅ What are Hooks?
 
-**Hooks** are special functions in React that let you “hook into” React features **inside functional components**.
+**Hooks** are special functions that let you “hook into” React features **inside functional components** — such as state (`useState`) or lifecycle methods (`useEffect`).
 
 ### 💡 Example:
 
@@ -174,13 +174,51 @@ function MyComponent() {
 
 ### 🔧 Common Hooks:
 
-| Hook         | Use For                             |
-|--------------|--------------------------------------|
-| `useState`   | Adding local state                   |
-| `useEffect`  | Side effects (fetching data, etc)    |
-| `useContext` | Accessing global state/context       |
-| `useRef`     | Referencing DOM or values            |
-| `useMemo`    | Caching expensive calculations       |
+| Hook          | Use For                                       |
+| ------------- | --------------------------------------------- |
+| `useState`    | Adding local state                            |
+| `useEffect`   | Side effects (fetching data, etc) & lifecycle |
+| `useContext`  | Accessing global state/context                |
+| `useRef`      | Referencing DOM or values                     |
+| `useMemo`     | Caching expensive calculations                |
+| `useCallback` | Memoizing functions for performance           |
+
+---
+
+### 🔁 `useEffect()`
+
+| Use it for... | Side effects (data fetching, timers, event listeners) |
+| ------------- | ----------------------------------------------------- |
+| Runs when     | Component mounts or any dependency changes            |
+| Key Concept   | Lifecycle hook in functional components               |
+
+---
+
+### 📌 `useRef()`
+
+| Use it for...           | Accessing DOM, storing previous values     |
+| ----------------------- | ------------------------------------------ |
+| Doesn't cause re-render | Changing `.current` won't trigger rerender |
+| Example Use Case        | Focus input, previous value tracking       |
+
+---
+
+### ⚡ `useCallback()`
+
+| Use it for... | Memoizing functions                            |
+| ------------- | ---------------------------------------------- |
+| Prevents...   | Unnecessary re-renders or recreating functions |
+| Returns...    | A memoized (cached) version of the function    |
+
+---
+
+### 💡 Real-Life Analogy
+
+| Hook            | Analogy                                                  |
+| --------------- | -------------------------------------------------------- |
+| `useEffect()`   | Alarm clock that rings when something changes            |
+| `useRef()`      | Sticky note you can read/write without disturbing others |
+| `useCallback()` | Locking a function to only change when inputs change     |
 
 ---
 
