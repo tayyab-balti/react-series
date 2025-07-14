@@ -204,6 +204,7 @@ function MyComponent() {
 ---
 
 ### ⚡ `useCallback()`
+It remembers the function reference, which means whenever you're passing a function from a parent to a child and the parent re-renders, the function that is sent to its child will also change its reference. So all children that have that function will also re-renders. To avoid multiple re-renders, we use useCallback() so that the reference to that function remains static unless the dependency passed to useCallback() changes (which optimizes our application). 
 
 | Use it for... | Memoizing functions                            |
 | ------------- | ---------------------------------------------- |
