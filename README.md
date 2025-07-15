@@ -346,4 +346,184 @@ function Card({ username, myArr }) {
 }
 ```
 
+---
 
+
+# ⚛️ React Router DOM — Notes
+
+React Router DOM is a library for handling routing (navigation) in React apps.
+
+---
+
+## 🔗 Basic Concepts
+
+| Concept       | Description                                 |
+|---------------|---------------------------------------------|
+| **Route**     | Defines what UI to show for a given path     |
+| **Router**    | Keeps the UI in sync with the URL            |
+| **Link**      | Replaces `<a>` for navigation without reload |
+| **useNavigate**| Imperatively navigate in code               |
+| **useParams** | Access dynamic route params like `/user/:id`|
+| **Outlet**    | Placeholder to render nested routes          |
+| **Loader**    | Loads data before rendering (v6.4+)          |
+
+---
+
+## 📦 Install
+
+```bash
+npm install react-router-dom
+```
+
+---
+
+## 🧱 Basic Setup
+
+```jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+---
+
+## 🔗 Navigation with `Link`
+
+```jsx
+import { Link } from "react-router-dom";
+
+<Link to="/">Home</Link>
+<Link to="/about">About</Link>
+```
+
+---
+
+## 🚀 Programmatic Navigation
+
+```jsx
+import { useNavigate } from "react-router-dom";
+
+function MyComponent() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/about");
+  };
+
+  return <button onClick={handleClick}>Go to About</button>;
+}
+```
+
+---
+
+## 🔣 Dynamic Routes + `useParams`
+
+```jsx
+<Route path="/user/:id" element={<User />} />
+
+// In User.js
+import { useParams } from "react-router-dom";
+
+function User() {
+  const { id } = useParams();
+  return <div>User ID: {id}</div>;
+}
+```
+
+---
+
+## 🧩 Nested Routes + Outlet
+
+```jsx
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route path="profile" element={<Profile />} />
+  <Route path="settings" element={<Settings />} />
+</Route>
+
+// In Dashboard.jsx
+import { Outlet } from "react-router-dom";
+
+function Dashboard() {
+  return (
+    <>
+      <h2>Dashboard</h2>
+      <Outlet /> {/* renders nested routes here */}
+    </>
+  );
+}
+```
+
+---
+
+## 🔁 React Router Loader (v6.4+)
+
+### ✅ What is a Loader?
+
+A **loader** is a function that **fetches data before rendering** the route.
+
+### 🧪 Simple Example with API
+
+```jsx
+// loader function
+export async function userLoader() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  return res.json();
+}
+
+// App.jsx
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import UserPage, { userLoader } from "./UserPage";
+
+const router = createBrowserRouter([
+  {
+    path: "/users",
+    element: <UserPage />,
+    loader: userLoader,
+  },
+]);
+
+<RouterProvider router={router} />;
+```
+
+### 👀 Accessing Loader Data
+
+```jsx
+import { useLoaderData } from "react-router-dom";
+
+function UserPage() {
+  const users = useLoaderData();
+
+  return (
+    <ul>
+      {users.map((user) => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+---
+
+## ✅ Summary Table
+
+| Feature        | Hook / Component       | Use                                        |
+|----------------|------------------------|---------------------------------------------|
+| Navigation     | `<Link to="">`, `useNavigate()` | Move between pages                      |
+| Params         | `useParams()`          | Get dynamic values from URL                |
+| Data Loader    | `loader()`, `useLoaderData()` | Fetch data before render             |
+| Nested Routes  | `<Outlet />`           | Render child routes                         |
+| Catch Errors   | `errorElement`, `useRouteError()` | Handle loader or route errors       |
+
+---
