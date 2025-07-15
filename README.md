@@ -525,3 +525,111 @@ function UserPage() {
 | Catch Errors   | `errorElement`, `useRouteError()` | Handle loader or route errors       |
 
 ---
+
+
+# 🌐 React Context API — Notes
+
+## 🧠 What is Context API?
+
+The **React Context API** is a built-in state management tool that lets you **share data globally** across components without having to manually pass props down each level (known as **prop drilling**).
+
+It’s ideal for creating **global variables**, such as user data, themes, or language preferences.
+
+---
+
+## 🧱 Core Components of Context API
+
+| Component    | Role                                                         |
+| ------------ | ------------------------------------------------------------ |
+| **Provider** | Wraps components and **provides** the shared data/state      |
+| **Consumer** | Consumes or uses the context data (usually via `useContext`) |
+
+---
+
+## ✅ Advantages
+
+| Feature                 | Benefit                                      |
+| ----------------------- | -------------------------------------------- |
+| **Data Sharing**        | Easily share state/functions globally        |
+| **Avoid Prop Drilling** | Access deeply nested data directly           |
+| **Reduced Coupling**    | Components are less dependent on one another |
+| **Centralization**      | Global state can be managed in one place     |
+
+---
+
+## ⚠️ Limitations
+
+| Issue              | Description                                               |
+| ------------------ | --------------------------------------------------------- |
+| **Performance**    | Frequent updates can cause unnecessary re-renders         |
+| **Testing**        | Context setup adds complexity to unit testing             |
+| **No Type Safety** | Values aren’t checked by default (can cause runtime bugs) |
+
+---
+
+## ⚙️ How to Use Context API
+
+### 1️⃣ Create the Context
+
+```js
+import { createContext } from 'react';
+
+export const AppContext = createContext("");
+```
+
+---
+
+### 2️⃣ Create the Provider
+
+```jsx
+import React, { useState } from 'react';
+import { AppContext } from './AppContext';
+import AppComponent from './AppComponent';
+
+function App() {
+  const [text, setText] = useState("");
+
+  return (
+    <AppContext.Provider value={{ text, setText }}>
+      <AppComponent />
+    </AppContext.Provider>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 3️⃣ Consume the Context
+
+```jsx
+import { useContext } from 'react';
+import { AppContext } from './AppContext';
+
+function AppComponent() {
+  const { text, setText } = useContext(AppContext);
+
+  return (
+    <div>
+      <h1>{text}</h1>
+      <button onClick={() => setText("Geeks for Geeks")}>Click me</button>
+    </div>
+  );
+}
+
+export default AppComponent;
+```
+
+---
+
+## 📌 When to Use Context API
+
+✅ Use Context API when:
+
+* You want to **share data globally** across unrelated components
+* You want to **avoid prop drilling**
+* You have a **dynamic global state** (e.g. auth, theme, language)
+* Your components **communicate across levels** of the component tree
+
+---
