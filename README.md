@@ -353,8 +353,6 @@ function Card({ username, myArr }) {
 
 React Router DOM is a library for handling routing (navigation) in React apps.
 
----
-
 ## 🔗 Basic Concepts
 
 | Concept       | Description                                 |
@@ -470,7 +468,7 @@ function Dashboard() {
 
 ### ✅ What is a Loader?
 
-A **loader** is a function that **fetches data before rendering** the route.
+A **loader** is a function that **fetches data before rendering** the route. These are used to handle the loading of data while navigating between website pages. Imagine you are browsing a website. When you browse to a new page, a loader or spinner is displayed to show that the data is being fetched until the new page loads.
 
 ### 🧪 Simple Example with API
 
