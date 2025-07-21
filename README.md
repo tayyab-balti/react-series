@@ -220,6 +220,51 @@ function MyComponent() {
 
 ---
 
+### 🔁 Two-Way Binding in React
+Two-way binding means syncing the form's input field with React component state so that:
+
+- The input displays the current (latest) state value.
+- Any user changes update that state in real time.
+
+This is done using:
+- value={state} to bind the input to state.
+- onChange={(e) => setState(e.target.value)} to update the state on user input.
+
+```jsx
+import React, { useState } from 'react';
+
+const App = () => {
+  // 1. Initialize state for the input field
+  const [username, setUsername] = useState('');
+
+  // 2. Handle form submission
+  const submitHandler = (e) => {
+    e.preventDefault(); // Prevent default page reload
+    console.log('Submitted!', username); // Log the current input value
+    setUsername(''); // Clear input after submission
+  };
+
+  return (
+    <form onSubmit={submitHandler}>
+      <input
+        value={username}   // 3. Bind input value to state (controlled input)
+        onChange={(e) => setUsername(e.target.value)}     // 4. Update state on input change
+        className="text-3xl bg-amber-200 px-5 py-5 m-5"
+        type="text"
+        placeholder="Enter your name"
+      />
+      <button className="text-3xl bg-sky-400 px-5 py-5 m-5">
+        Submit
+      </button>
+    </form>
+  );
+};
+
+export default App;
+```
+
+---
+
 ### 🔁 `useEffect()`
 
 | Use it for... | Side effects (data fetching, timers, event listeners) |
