@@ -220,7 +220,7 @@ function MyComponent() {
 
 ---
 
-### 🔁 Two-Way Binding in React
+### 🔁 Two-Way Binding
 Two-way binding means syncing the form's input field with React component state so that:
 
 - The input displays the current (latest) state value.
@@ -271,6 +271,49 @@ export default App;
 | ------------- | ----------------------------------------------------- |
 | Runs when     | Component mounts or any dependency changes            |
 | Key Concept   | Lifecycle hook in functional components               |
+
+---
+
+### 📦 What is Axios?
+- Axios is a popular JavaScript library used in React (and other frameworks) to make HTTP requests (e.g., GET, POST, PUT, DELETE) to APIs or servers.
+
+#### 🔗 Axios & Promises
+- It is promise-based. Every Axios request returns a Promise.
+- Returns a Promise, so you can use .then().catch() or async/await.
+- Automatically handles JSON responses and offers simpler syntax than fetch().
+
+#### ✅ Example
+
+```jsx
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const App = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Axios returns a promise
+    axios.get('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
+        setUsers(response.data); // response.data contains the API data
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  return (
+    <div>
+      <h2>User List:</h2>
+      <ul>
+        {users.map(user => <li key={user.id}>{user.name}</li>)}
+      </ul>
+    </div>
+  );
+};
+
+export default App;
+```
 
 ---
 
