@@ -756,3 +756,70 @@ export default AppComponent;
 * Your components **communicate across levels** of the component tree
 
 ---
+
+
+## 🧠 Function References vs Function Calls in onClick
+
+### ✅ Core Rule
+| When to use `()`                             | When to avoid `()`                         |
+|---------------------------------------------|--------------------------------------------|
+| When calling a function immediately         | When passing a function reference          |
+| e.g., inside another function or with logic | e.g., as an event handler like `onClick={fn}` |
+| Wrap logic in `() => fn()`                  | Pass function directly like `onClick={fn}` |
+
+---
+
+### ✅ Real Examples
+
+#### 🔹 Case 1: Passing function reference
+```jsx
+<button onClick={handleClick}>Click me</button>
+
+function handleClick() {
+  console.log("Button clicked!");
+}
+```
+✅ React will call handleClick when the button is clicked.
+
+
+#### 🔹 Case 2: Calling function with logic or args
+```jsx
+<button onClick={() => handleClick()}>Click me</button>
+```
+✅ Use arrow function when:
+- You need to pass arguments
+- You have logic (e.g., conditions)
+
+#### ⚠️ Case 3: Calling function immediately (❌)
+```jsx
+<button onClick={handleClick()}>Click me</button>
+```
+❌ This runs handleClick() during render (page reloads) — not on click.
+
+### 🎯 When to Use Parentheses ()
+
+```jsx
+<button onClick={() => condition ? doThis() : doThat()}>Click</button>
+```
+✅ Correct: function is called based on logic.
+
+```jsx
+<button onClick={() => condition ? doThis : doThat}>Click</button>
+```
+⚠️ This passes a reference; function won't be called unless explicitly invoked.
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
