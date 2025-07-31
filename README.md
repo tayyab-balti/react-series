@@ -767,8 +767,6 @@ export default AppComponent;
 | e.g., inside another function or with logic | e.g., as an event handler like `onClick={fn}` |
 | Wrap logic in `() => fn()`                  | Pass function directly like `onClick={fn}` |
 
----
-
 ### ✅ Real Examples
 
 #### 🔹 Case 1: Passing function reference
@@ -782,13 +780,17 @@ function handleClick() {
 ✅ React will call handleClick when the button is clicked.
 
 
-#### 🔹 Case 2: Calling function with logic or args
+#### 🔹 Case 2: Calling function with arguments or logic
 ```jsx
-<button onClick={() => handleClick()}>Click me</button>
+<button onClick={() => handleClick("Hello")}>Click me</button>
+
+function handleClick(message) {
+  console.log("Message:", message);
+}
 ```
 ✅ Use arrow function when:
 - You need to pass arguments
-- You have logic (e.g., conditions)
+- Or you have inline logic like conditionals
 
 #### ⚠️ Case 3: Calling function immediately (❌)
 ```jsx
